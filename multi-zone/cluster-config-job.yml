@@ -4,9 +4,10 @@ metadata:
   generateName: yb-cluster-config-
   namespace: gitops-yb
 spec:
+  completions: 1
+  parallelism: 1
   template:
     spec:
-      completions: 1
       serviceAccount: gitops-bot
       containers:
       - name: config-job

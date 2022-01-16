@@ -10,8 +10,8 @@ spec:
     # The namespace the application belongs to.
     namespace: argocd
   source:
-    path: single-zone
     repoURL: 'https://github.com/srinivasa-vasu/gitops-yb.git'
+    path: single-zone
     directory:
       recurse: true    
   # The project the application belongs to.
@@ -20,5 +20,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-    - CreateNamespace=true      
