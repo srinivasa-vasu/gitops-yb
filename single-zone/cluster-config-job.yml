@@ -8,8 +8,6 @@ metadata:
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
-  completions: 1
-  parallelism: 1
   template:
     spec:
       serviceAccount: gitops-bot
@@ -43,7 +41,7 @@ spec:
                 echo "instance is not ready yet; ${wt}s sleep before retry"
                 sleep $wt
               done
-      restartPolicy: OnFailure
+      restartPolicy: Never
   backoffLimit: 3
   # 10m deadline to wait for the image download 
   activeDeadlineSeconds: 600
