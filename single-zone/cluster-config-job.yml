@@ -5,6 +5,8 @@ metadata:
   namespace: gitops-yb
   annotations:
     argocd.argoproj.io/sync-options: Replace=true
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   completions: 1
   parallelism: 1
