@@ -4,7 +4,6 @@ metadata:
   generateName: yb-cluster-config-
   namespace: gitops-yb
   annotations:
-    argocd.argoproj.io/sync-options: Replace=true
     argocd.argoproj.io/hook: PostSync
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
@@ -36,7 +35,10 @@ spec:
                      $(nc -z -w 1 yb-master-0.yb-masters.gitops-yb-az3 7100; echo $?) -eq 0 ]; then
                   echo "instance is up; applying the config change"
                   kubectl exec -n gitops-yb-az1 yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.gitops-yb-az1:7100,yb-master-0.yb-masters.gitops-yb-az2:7100,yb-master-0.yb-masters.gitops-yb-az3:7100 modify_placement_info ybcloud.pandora.az1,ybcloud.pandora.az2,ybcloud.pandora.az3 $RF"
-                  break
+                  if [ $? -eq 0 ]; then 
+                    echo "successfully applied config change"
+                    break
+                  fi
                 fi
                 echo "instance is not ready yet; ${wt}s sleep before retry"
                 sleep $wt
