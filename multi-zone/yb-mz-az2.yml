@@ -11,7 +11,7 @@ spec:
   source:
     path: stable/yugabyte
     repoURL: 'https://github.com/yugabyte/charts'
-    # targetRevision: HEAD
+    targetRevision: HEAD
     helm:
       parameters:
         - name: masterAddresses

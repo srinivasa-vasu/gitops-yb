@@ -11,13 +11,13 @@ spec:
   source:
     path: stable/yugabyte
     repoURL: 'https://github.com/yugabyte/charts'
-    # targetRevision: HEAD
+    targetRevision: HEAD    
     helm:
       parameters:
         - name: replicas.master
-          value: '3'
+          value: '1'
         - name: replicas.tserver
-          value: '3'
+          value: '1'
         - name: storage.master.count
           value: '1'
         - name: storage.tserver.count
