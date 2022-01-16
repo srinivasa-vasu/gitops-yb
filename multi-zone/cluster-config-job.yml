@@ -33,7 +33,7 @@ spec:
                 if [ $(nc -z -w 1 yb-master-0.yb-masters.gitops-yb-az1 7100; echo $?) -eq 0 -a \
                      $(nc -z -w 1 yb-master-0.yb-masters.gitops-yb-az2 7100; echo $?) -eq 0 -a  \
                      $(nc -z -w 1 yb-master-0.yb-masters.gitops-yb-az3 7100; echo $?) -eq 0 ]; then
-                  echo "instance is up; applying the config change"
+                  echo "instance seems up; applying the config change"
                   kubectl exec -n gitops-yb-az1 yb-master-0 -c yb-master -- bash -c "/home/yugabyte/master/bin/yb-admin --master_addresses yb-master-0.yb-masters.gitops-yb-az1:7100,yb-master-0.yb-masters.gitops-yb-az2:7100,yb-master-0.yb-masters.gitops-yb-az3:7100 modify_placement_info ybcloud.pandora.az1,ybcloud.pandora.az2,ybcloud.pandora.az3 $RF"
                   if [ $? -eq 0 ]; then 
                     echo "successfully applied config change"
