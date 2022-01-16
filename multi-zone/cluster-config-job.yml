@@ -3,6 +3,8 @@ kind: Job
 metadata:
   generateName: yb-cluster-config-
   namespace: gitops-yb
+  annotations:
+    argocd.argoproj.io/sync-options: Replace=true
 spec:
   completions: 1
   parallelism: 1
