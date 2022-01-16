@@ -15,9 +15,9 @@ spec:
     helm:
       parameters:
         - name: replicas.master
-          value: '3'
+          value: '1'
         - name: replicas.tserver
-          value: '3'
+          value: '1'
         - name: storage.master.count
           value: '1'
         - name: storage.tserver.count
